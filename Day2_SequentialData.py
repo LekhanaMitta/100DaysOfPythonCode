@@ -304,53 +304,134 @@ print(empty_tuple)
 empty_set = set()
 print(empty_set)
 # output : {}
+nums = [1, 2, 1, 2, 3, 1, 1, 5, 3, 6, 7, 8, 4, 4, 9]
+my_set = set()
+for s in nums:
+  my_set.add(s)
+print(my_set)
+# output : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+my_set = {n for n in nums}
+print(my_set)
+# output : {1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 
-print("-------------------------------------------------------------")
+# print("-------------------------------------------------------------")
 
 # Working with Key Value Pair
 print('--------------------------------------------------------------------------------------')
 
 student = {'First Name' : 'Lekhana', 'Last Name' : 'Mitta', 'Age' : 22, 'Courses' : ['Math', 'Physics', 'Chemistry']}
 print(student['Courses'])
+# output : ['Math', 'Physics', 'Chemistry']
 print(student['Age'])
+# output : 22
 
 print('--------------------------------------------------------------------------------------')
 
 # Methods in Dictionary
 # get() method
 print(student.get('First Name'))
+# output : Lekhana
 print(student.get('phone'))                     # prints none
 print(student.get('phone', 'Not Found'))        # prints Not Found
 student['phone'] = '234567'
 print(student.get('phone'))
+# output : 234567
 
 print('--------------------------------------------------------------------------------------')
 
 # Updating the values of the dictionary
 student['First Name'] = 'Bhanu'
 print(student)
+# output : {'First Name': 'Bhanu', 'Last Name': 'Mitta', 'Age': 22, 'Courses': ['Math', 'Physics', 'Chemistry'], 'phone': '234567'}
 student.update({'Last Name' : 'Reddy', 'Age' : 22})
 print(student)
+# output : {'First Name': 'Bhanu', 'Last Name': 'Reddy', 'Age': 22, 'Courses': ['Math', 'Physics', 'Chemistry'], 'phone': '234567'}
 
 print('--------------------------------------------------------------------------------------')
 
 # Deleting the values of the dictionary
 del student['phone']
 print(student)
+# output : {'First Name': 'Bhanu', 'Last Name': 'Reddy', 'Age': 22, 'Courses': ['Math', 'Physics', 'Chemistry']}
 age = student.pop('Age')
+# output : {'First Name': 'Bhanu', 'Last Name': 'Reddy','Courses': ['Math', 'Physics', 'Chemistry']}
 print(student)
 
 print('--------------------------------------------------------------------------------------')
 
 # Keys(), values() and items()
 print(student.keys())                   # prints keys of the dictionary
+# output : dict_keys(['First Name', 'Last Name', 'Courses'])
 for key in student:
     print(key)
+# output :
+# First Name
+# Last Name
+# Courses
 
 print(student.values())                 # prints values of the dictionary
+# output : dict_values(['Bhanu', 'Reddy', ['Math', 'Physics', 'Chemistry']])
 for key, value in student.items():
     print(key, value)
+# output : 
+# First Name Bhanu
+# Last Name Reddy
+# Courses ['Math', 'Physics', 'Chemistry']
+
 print(student.items())                  # prints items of the dictionary as they are.
+# output : dict_items([('First Name', 'Bhanu'), ('Last Name', 'Reddy'), ('Courses', ['Math', 'Physics', 'Chemistry'])])
 
 print('--------------------------------------------------------------------------------------')
+
+# Dictionary Comprehension
+names = ['Albert Einstein', 'Marie Curie', 'Ramanujan', 'Swaminathan']
+courses = [' Physics', 'Chemistry', 'Mathematics', 'Botany']
+print(list(zip(names, courses)))
+# output : [('Albert Einstein', ' Physics'), ('Marie Curie', 'Chemistry'), ('Ramanujan', 'Mathematics'), ('Swaminathan', 'Botany')]
+
+my_dict = {}
+for name, course in list(zip(names, courses)):
+    my_dict[name] = course
+print(my_dict)
+# output : {'Albert Einstein': ' Physics', 'Marie Curie': 'Chemistry', 'Ramanujan': 'Mathematics', 'Swaminathan': 'Botany'}
+
+my_dict = {name: course for name, course in list(zip(names, courses)) }
+print(my_dict)
+# output : {'Albert Einstein': ' Physics', 'Marie Curie': 'Chemistry', 'Ramanujan': 'Mathematics', 'Swaminathan': 'Botany'}
+
+# sorting a dictionary.
+# Key values are sorted.
+s_di = sorted(my_dict)
+print(s_di)
+# output : ['Albert Einstein', 'Marie Curie', 'Ramanujan', 'Swaminathan']
+
+
+print('--------------------------------------------------------------------------------------')
+
+# String Formatting.
+person = {'Name':'Lekhana', 'age':22, 'Education' : 'Bachelors'}
+tag = "h1"
+text = "This is FYI."
+sentence = '<{0}>{1}</{0}>'.format(tag, text)
+print(sentence)
+# output : <h1>This is FYI.</h1>
+
+sentence = 'My name is {0}, I am {1} years old and I completed my {2}'.format(person['Name'], person['age'], person['Education'])
+print(sentence)
+# output : My name is Lekhana, I am 22 years old and I completed my Bachelors
+
+sentence = 'My name is {0[Name]}, I am {1[age]} years old and I completed my {2[Education]}'.format(person, person, person)
+print(sentence)
+# output : My name is Lekhana, I am 22 years old and I completed my Bachelors
+
+person = ['Lekhana', 22, 'Bachelors']
+sentence = 'My name is {0[0]}, I am {0[1]} years old and I completed my {0[2]}'.format(person)
+print(sentence)
+# output : My name is Lekhana, I am 22 years old and I completed my Bachelors
+
+sentence = 'My name is {name}, I am {age} years old and I completed my {education}'.format(name = 'Lekhana', age = 22, education = 'Btech')
+print(sentence)
+# output : My name is Lekhana, I am 22 years old and I completed my Btech
+
