@@ -104,3 +104,76 @@ print(os.path.splitext('/bhanu/test.txt'))
 
 print('-------------------------------------------------------------------------------------------------------------')
 
+# Module datetime:
+
+import datetime
+
+# Naive datetime - where the daylight saving zones and other specific things related to time zone are not considered.
+# Aware datetime - to be aware of considering the specific things related to time zone we use this.
+
+# Naive datetime
+# datetime.date ( year, month and day) without (hours, minutes, seconds and microseconds)
+
+d = datetime.date(2022, 12, 21)
+print(d)
+
+# To get the today's date.
+d = datetime.date.today()
+print(d)                    # To get today's date in YYYY-MM-DD format.
+print(d.year)               # To get the year 
+print(d.month)              # To get the month
+print(d.day)                # To get today's day of the month.
+print(d.weekday())          # To get the day of today, here Monday - 0, Sunday - 6
+print(d.isoweekday())       # Monday - 1, sunday - 7
+
+# To know the date of a week before and after today's date
+dt = datetime.timedelta(days=7)
+print(d - dt)
+print(d + dt)
+
+# date2 = date1 + timedelta
+# timedelta = data1 + data2
+
+# Number of days till my next birthday.
+bday = datetime.date(2025, 4, 13)
+till_bday = bday - d
+print(till_bday)
+
+# Number of seconds till my next birthday.
+print(till_bday.total_seconds())
+
+# datetime.time  will work with (hours, minutes, seconds and microseconds)
+t = datetime.time(12, 34, 56, 12345)
+print(t)                # output : 12:34:56.012345
+print(t.hour)           # output : 12
+print(t.minute)         # output : 34
+print(t.second)         # output : 56
+
+# datetime.datetime will work with (year, month, day, hours, minutes, seconds and microseconds)
+dt = datetime.datetime(2025, 4, 13, 12, 54, 36, 1234)
+print(dt)               # output : 2025-04-13 12:54:36.001234
+print(dt.time())        # output : 12:54:36.001234
+print(dt.date())        # output : 2025-04-13   
+print(dt.hour)          # output : 12
+print(dt.month)         # output : 4
+print(dt.year)          # output : 2025
+print(dt.minute)        # output : 54
+
+td = datetime.timedelta(days=8)
+print(dt + td)          # output : 2025-04-21 12:54:36.001234
+td = datetime.timedelta(hours=14)
+print(td + dt)          # output : 2025-04-14 02:54:36.001234
+td = datetime.timedelta(minutes=567)
+print(td + dt)          # output : 2025-04-13 22:21:36.001234
+td = datetime.timedelta(seconds=34)
+print(td+dt)            # output : 2025-04-13 12:55:10.001234
+
+# Constructors in datetime module
+dt_today = datetime.datetime.today()
+dt_now = datetime.datetime.now()                # Expects to take a timezone as the parameter.
+dt_utcnow = datetime.datetime.utcnow()
+
+print(dt_today)
+print(dt_now)
+print(dt_utcnow)
+
