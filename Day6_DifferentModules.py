@@ -180,6 +180,22 @@ print(dt_utcnow)
 import pytz
 # While working to timezone it's better to work with utc, so pytz helps with that.
 dt = datetime.datetime(2024, 4, 13, 8, 34, 42, tzinfo = pytz.UTC)
+print(dt)
 
+dt_now = datetime.datetime.now(tz=pytz.UTC)
+print(dt_now)
 
+dt_utcnow = datetime.datetime.utcnow().replace(tzinfo=pytz.UTC)
+print(dt_utcnow)
 
+dt_ist = dt_now.astimezone(pytz.timezone('Asia/Calcutta'))
+print(dt_ist)
+
+# To print all the timezones available in pytz module
+# for tz in pytz.all_timezones:
+#     print(tz)
+
+# Given a local timezone and we wish to convert it into other timezone
+dt_here = datetime.datetime.now()
+dt_est = dt_here.astimezone(pytz.timezone('EST'))
+print(dt_est)
